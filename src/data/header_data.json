@@ -1,0 +1,72 @@
+[
+	{
+		"OrderId": "SO001",
+		"CustomerName": "John Doe",
+		"OrderDate": "2023-05-29",
+		"TotalAmount": 250.0,
+		"OrderStatus": "Pending"
+	},
+	{
+		"OrderId": "SO002",
+		"CustomerName": "Jane Smith",
+		"OrderDate": "2023-05-30",
+		"TotalAmount": 600.0,
+		"OrderStatus": "Shipped"
+	},
+	{
+		"OrderId": "SO003",
+		"CustomerName": "Robert Johnson",
+		"OrderDate": "2023-05-31",
+		"TotalAmount": 450.0,
+		"OrderStatus": "Pending"
+	},
+	{
+		"OrderId": "SO004",
+		"CustomerName": "Michael Davis",
+		"OrderDate": "2023-06-01",
+		"TotalAmount": 200.0,
+		"OrderStatus": "Shipped"
+	},
+	{
+		"OrderId": "SO005",
+		"CustomerName": "Emily Wilson",
+		"OrderDate": "2023-06-02",
+		"TotalAmount": 75.0,
+		"OrderStatus": "Pending"
+	},
+	{
+		"OrderId": "SO006",
+		"CustomerName": "Daniel Brown",
+		"OrderDate": "2023-06-03",
+		"TotalAmount": 350.0,
+		"OrderStatus": "Shipped"
+	},
+	{
+		"OrderId": "SO007",
+		"CustomerName": "Sophia Johnson",
+		"OrderDate": "2023-06-04",
+		"TotalAmount": 420.0,
+		"OrderStatus": "Pending"
+	},
+	{
+		"OrderId": "SO008",
+		"CustomerName": "Olivia Martinez",
+		"OrderDate": "2023-06-09",
+		"TotalAmount": 90.0,
+		"OrderStatus": "Shipped"
+	},
+	{
+		"OrderId": "SO009",
+		"CustomerName": "William Lee",
+		"OrderDate": "2023-06-11",
+		"TotalAmount": 150.0,
+		"OrderStatus": "Pending"
+	},
+	{
+		"OrderId": "SO010",
+		"CustomerName": "Sophia Rodriguez",
+		"OrderDate": "2023-06-12",
+		"TotalAmount": 200.0,
+		"OrderStatus": "Pending"
+	}
+]
