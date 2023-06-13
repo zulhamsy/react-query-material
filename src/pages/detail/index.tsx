@@ -1,27 +1,19 @@
 import { useParams } from "react-router-dom"
-import {
-  Paper,
-  Typography,
-  TableContainer,
-  Table,
-  TableHead,
-  TableBody,
-  TableRow,
-  TableCell,
-  Button,
-  IconButton,
-  Tooltip,
-} from "@mui/material"
-import { AddRounded, EditRounded, Delete } from "@mui/icons-material"
+import { Paper, Typography } from "@mui/material"
+import ListItems from "./ListItems"
+import ShipmentAddress from "./ShipmentAddress"
 import useOrderDetails from "./useOrderDetails"
-import useItemOrder from "./useItemOrder.ts"
+import useItemOrder from "./useItemOrder"
 
 export default function Detail() {
   const { id } = useParams()
   const salesOrderQuery = useOrderDetails(id)
   const orderItemsQuery = useItemOrder(salesOrderQuery.data?.OrderItemsId)
-  const { data: salesData } = salesOrderQuery
   const { data: itemsData, isLoading: itemsLoading } = orderItemsQuery
+  const { data: salesData, isLoading: salesLoading } = salesOrderQuery
+  const priceTotal =
+    itemsData?.Items.reduce((acc, curr) => acc + curr.LineTotal, 0) || 0
+  const totalByRespon = salesData?.TotalAmount || 0
   return (
     <Paper
       square
@@ -29,63 +21,72 @@ export default function Detail() {
       sx={{
         minHeight: "90vh",
         backgroundColor: "#f1f5f9",
-        px: 8,
-        py: 10,
+        px: 5,
+        py: 4,
+        display: "grid",
+        gridTemplateColumns: "auto 1fr",
+        gridTemplateRows: "repeat(2, minmax(auto, 1fr))",
+        gap: 4,
       }}
     >
+      <ListItems id={id} />
+      <ShipmentAddress id={id} />
       <Paper
         elevation={0}
-        sx={{ width: "fit-content", px: 4, py: 3, bgcolor: "inherit" }}
+        sx={{ gridColumn: 2, gridRow: "1/3", backgroundColor: "inherit" }}
       >
-        <Typography color="#64748b" fontWeight={600} mb={2}>
-          List of items {salesData ? "#" + salesData.OrderId : "..."}
+        <Typography variant="body1" color="#64748b" fontWeight={600} mb={2}>
+          Order Summary
         </Typography>
-        <TableContainer component={Paper} elevation={1} sx={{ mb: 2 }}>
-          <Table>
-            <TableHead>
-              <TableRow
-                sx={{
-                  "& .MuiTableCell-root": {
-                    fontWeight: 600,
-                  },
-                }}
-              >
-                <TableCell>Product</TableCell>
-                <TableCell>Quantity</TableCell>
-                <TableCell>Unit Price</TableCell>
-                <TableCell>Total</TableCell>
-                <TableCell>Action</TableCell>
-              </TableRow>
-            </TableHead>
-            <TableBody>
-              {itemsData?.Items.map((item) => (
-                <TableRow key={item.ProductId}>
-                  <TableCell>{item.ProductName}</TableCell>
-                  <TableCell align="right">{item.Quantity} pcs</TableCell>
-                  <TableCell align="right">${item.UnitPrice}</TableCell>
-                  <TableCell align="right">${item.LineTotal}</TableCell>
-                  <TableCell>
-                    <Tooltip title="Edit">
-                      <IconButton>
-                        <EditRounded fontSize="small" />
-                      </IconButton>
-                    </Tooltip>
-                    <Tooltip title="Delete">
-                      <IconButton>
-                        <Delete fontSize="small" />
-                      </IconButton>
-                    </Tooltip>
-                  </TableCell>
-                </TableRow>
-              ))}
-            </TableBody>
-          </Table>
-        </TableContainer>
-        {itemsLoading ? null : (
-          <Button variant="outlined" startIcon={<AddRounded />}>
-            Add Items
-          </Button>
-        )}
+        <Paper variant="outlined" sx={{ p: 2, width: "75%" }}>
+          <div
+            style={{
+              display: "flex",
+              justifyContent: "space-between",
+              marginBottom: 4,
+            }}
+          >
+            <Typography variant="body1" color="#475569">
+              Price total ({itemsData?.Items.length} items)
+            </Typography>
+            <Typography variant="body1" color="#1e293b" fontWeight={600}>
+              {!itemsLoading ? `$${priceTotal}` : "Calculating..."}
+            </Typography>
+          </div>
+          <div
+            style={{
+              display: "flex",
+              justifyContent: "space-between",
+              marginBottom: 16,
+            }}
+          >
+            <Typography variant="body1" color="#475569">
+              Insurance Cost
+            </Typography>
+            <Typography variant="body1" color="#1e293b" fontWeight={600}>
+              {itemsLoading || salesLoading
+                ? "Calculating..."
+                : `$${totalByRespon - priceTotal}`}
+            </Typography>
+          </div>
+          <div
+            style={{
+              display: "flex",
+              justifyContent: "space-between",
+            }}
+          >
+            <Typography variant="body1" color="#475569" fontWeight={600} pl={2}>
+              Total
+            </Typography>
+            <Typography variant="body1" color="primary" fontWeight={600}>
+              {itemsLoading || salesLoading ? "..." : `$${totalByRespon}`}
+            </Typography>
+          </div>
+          {/* Payment Details */}
+          <Typography variant="body1" color="#94a3b8" mt={3}>
+            Payment Details
+          </Typography>
+        </Paper>
       </Paper>
     </Paper>
   )

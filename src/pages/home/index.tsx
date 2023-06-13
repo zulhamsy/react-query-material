@@ -22,7 +22,8 @@ export default function Home() {
       square
       elevation={0}
       sx={{
-        height: "100vh",
+        minHeight: "100vh",
+        py: 4,
         display: "flex",
         justifyContent: "center",
         alignItems: "center",
