@@ -51,7 +51,7 @@ type CashPayment = {
 }
 
 type ProductItem = {
-  id: string
+  ProductId: string
   ProductName: string
   Quantity: number
   UnitPrice: number

@@ -78,7 +78,7 @@ export default function ListItems({ id }: { id?: string }) {
               </TableRow>
             ) : null}
             {items.map((item) => (
-              <TableRow key={item.id}>
+              <TableRow key={item.ProductId}>
                 <TableCell>{item.ProductName}</TableCell>
                 <TableCell align="right">{item.Quantity} pcs</TableCell>
                 <TableCell align="right">${item.UnitPrice}</TableCell>
@@ -90,7 +90,7 @@ export default function ListItems({ id }: { id?: string }) {
                     </IconButton>
                   </Tooltip>
                   <Tooltip title="Delete">
-                    <IconButton onClick={() => deleteItemById(item.id)}>
+                    <IconButton onClick={() => deleteItemById(item.ProductId)}>
                       <Delete fontSize="small" />
                     </IconButton>
                   </Tooltip>

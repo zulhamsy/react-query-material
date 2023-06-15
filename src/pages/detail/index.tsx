@@ -1,14 +1,13 @@
 import { useParams } from "react-router-dom"
-import { Button, Paper } from "@mui/material"
+import { Paper } from "@mui/material"
 import ListItems from "./ListItems"
 import ShipmentAddress from "./ShipmentAddress"
-import useItemStore from "./useItemsStore"
 import OrderSummary from "./OrderSummary"
+import Header from "./Header"
 
 export default function Detail() {
   const { id } = useParams()
   // store related
-  const isChanged = useItemStore((state) => state.isChanged)
   return (
     <Paper
       elevation={0}
@@ -19,15 +18,7 @@ export default function Detail() {
         py: 4,
       }}
     >
-      <div
-        style={{
-          marginBottom: "2rem",
-          display: "flex",
-          justifyContent: "flex-end",
-        }}
-      >
-        {isChanged ? <Button variant="contained">Apply Changes</Button> : null}
-      </div>
+      <Header />
       <Paper
         square
         elevation={0}

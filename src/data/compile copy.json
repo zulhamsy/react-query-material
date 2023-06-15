@@ -73,6 +73,7 @@
   ],
   "items": [
     {
+      "id": "OI001",
       "Items": [
         {
           "ProductId": "P001",
@@ -88,8 +89,7 @@
           "UnitPrice": 40.0,
           "LineTotal": 120.0
         }
-      ],
-      "id": "OI001"
+      ]
     },
     {
       "id": "OI002",

@@ -15,16 +15,17 @@ const useItemStore = create<ItemStore>((set) => {
     Items: [],
     deleteItemById: (id) =>
       set((state) => {
-        const newItems = state.Items.filter((item) => item.id !== id)
+        const newItems = state.Items.filter((item) => item.ProductId !== id)
         return {
           Items: newItems,
           isChanged: true,
         }
       }),
     init: (payload) =>
-      set(() => ({
+      set((state) => ({
         id: payload.id,
         Items: payload.Items,
+        isChanged: state.isChanged,
       })),
     reset: () => set(() => ({ id: "", Items: [], isChanged: false })),
   }
