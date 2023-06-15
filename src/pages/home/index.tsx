@@ -61,7 +61,7 @@ export default function Home() {
               </TableHead>
               <TableBody>
                 {headerQuery.data.map((sale, index) => (
-                  <TableRow key={sale.OrderId}>
+                  <TableRow key={sale.id}>
                     <TableCell>{index + 1 + "."}</TableCell>
                     <TableCell>{sale.CustomerName}</TableCell>
                     <TableCell align="left">
@@ -89,9 +89,7 @@ export default function Home() {
                       </span>
                     </TableCell>
                     <TableCell>
-                      <Button
-                        onClick={() => navigate(`/detail/${sale.OrderId}`)}
-                      >
+                      <Button onClick={() => navigate(`/detail/${sale.id}`)}>
                         See Details
                       </Button>
                     </TableCell>

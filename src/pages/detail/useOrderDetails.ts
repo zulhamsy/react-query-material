@@ -7,7 +7,7 @@ export default function useOrderDetails(orderId?: string) {
     async (): Promise<SalesOrder> => {
       try {
         const res = await fetch(
-          `http://localhost:3000/order?OrderId=${orderId}`,
+          `http://localhost:3000/order?id=${orderId}`,
         )
         const data: SalesOrder[] = await res.json()
         if (data.length) return data[0]

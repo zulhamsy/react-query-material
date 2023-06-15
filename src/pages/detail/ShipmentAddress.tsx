@@ -29,7 +29,7 @@ export default function ShipmentAddress({ id }: { id?: string }) {
                 display: "flex",
                 alignItems: "flex-start",
                 justifyContent: "space-between",
-                gap: "1",
+                gap: "1rem",
               }}
             >
               <Typography
@@ -38,6 +38,7 @@ export default function ShipmentAddress({ id }: { id?: string }) {
                 fontWeight={700}
                 component="p"
                 mb={1}
+                gutterBottom={false}
               >
                 {salesOrderQuery.data?.CustomerName}{" "}
               </Typography>

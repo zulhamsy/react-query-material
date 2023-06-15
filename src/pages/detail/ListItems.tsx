@@ -39,7 +39,7 @@ export default function ListItems({ id }: { id?: string }) {
       <Typography variant="body1" color="#64748b" fontWeight={600} mb={2}>
         List of Items{" "}
         <Typography component="span" fontWeight={600} color="primary">
-          {salesData ? "#" + salesData.OrderId : "..."}
+          {salesData ? "#" + salesData.id : "..."}
         </Typography>
       </Typography>
       <TableContainer component={Paper} elevation={2} sx={{ mb: 2 }}>
@@ -68,9 +68,17 @@ export default function ListItems({ id }: { id?: string }) {
                   </Typography>
                 </TableCell>
               </TableRow>
+            ) : !items.length && !itemsLoading ? (
+              <TableRow>
+                <TableCell colSpan={5}>
+                  <Typography variant="overline" color="#64748b">
+                    No items...
+                  </Typography>
+                </TableCell>
+              </TableRow>
             ) : null}
             {items.map((item) => (
-              <TableRow key={item.ProductId}>
+              <TableRow key={item.id}>
                 <TableCell>{item.ProductName}</TableCell>
                 <TableCell align="right">{item.Quantity} pcs</TableCell>
                 <TableCell align="right">${item.UnitPrice}</TableCell>
@@ -82,7 +90,7 @@ export default function ListItems({ id }: { id?: string }) {
                     </IconButton>
                   </Tooltip>
                   <Tooltip title="Delete">
-                    <IconButton onClick={() => deleteItemById(item.ProductId)}>
+                    <IconButton onClick={() => deleteItemById(item.id)}>
                       <Delete fontSize="small" />
                     </IconButton>
                   </Tooltip>
