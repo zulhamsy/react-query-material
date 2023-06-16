@@ -31,9 +31,15 @@ export default function ListItems({ id }: { id?: string }) {
   const deleteItemById = useItemStore((state) => state.deleteItemById)
 
   useEffect(() => {
-    if (itemsData) initializeStore(itemsData)
-    return resetStore
+    if (itemsData) {
+      initializeStore(itemsData)
+    }
   }, [itemsData])
+
+  // place cleanup fn in separate useEffect -> rule of thumb
+  useEffect(() => {
+    return resetStore
+  }, [])
   return (
     <Paper elevation={0} sx={{ width: "fit-content", bgcolor: "inherit" }}>
       <Typography variant="body1" color="#64748b" fontWeight={600} mb={2}>

@@ -22,10 +22,10 @@ const useItemStore = create<ItemStore>((set) => {
         }
       }),
     init: (payload) =>
-      set((state) => ({
+      set(() => ({
         id: payload.id,
         Items: payload.Items,
-        isChanged: state.isChanged,
+        isChanged: false,
       })),
     reset: () => set(() => ({ id: "", Items: [], isChanged: false })),
   }

@@ -7,7 +7,7 @@ import Header from "./Header"
 
 export default function Detail() {
   const { id } = useParams()
-  // store related
+
   return (
     <Paper
       elevation={0}
