@@ -95,14 +95,14 @@
       "id": "OI002",
       "Items": [
         {
-          "id": "P003",
+          "ProductId": "P003",
           "ProductName": "Widget C",
           "Quantity": 4,
           "UnitPrice": 25,
           "LineTotal": 100
         },
         {
-          "id": "P004",
+          "ProductId": "P004",
           "ProductName": "Widget D",
           "Quantity": 2,
           "UnitPrice": 30,
@@ -114,7 +114,7 @@
       "id": "OI003",
       "Items": [
         {
-          "id": "P005",
+          "ProductId": "P005",
           "ProductName": "Widget E",
           "Quantity": 1,
           "UnitPrice": 150,
@@ -126,7 +126,7 @@
       "id": "OI004",
       "Items": [
         {
-          "id": "P006",
+          "ProductId": "P006",
           "ProductName": "Widget F",
           "Quantity": 3,
           "UnitPrice": 25,
@@ -138,7 +138,7 @@
       "id": "OI005",
       "Items": [
         {
-          "id": "P007",
+          "ProductId": "P007",
           "ProductName": "Widget G",
           "Quantity": 4,
           "UnitPrice": 50,
@@ -150,7 +150,7 @@
       "id": "OI006",
       "Items": [
         {
-          "id": "P008",
+          "ProductId": "P008",
           "ProductName": "Widget H",
           "Quantity": 2,
           "UnitPrice": 60,
@@ -162,7 +162,7 @@
       "id": "OI007",
       "Items": [
         {
-          "id": "P001",
+          "ProductId": "P001",
           "ProductName": "Widget A",
           "Quantity": 5,
           "UnitPrice": 60,
@@ -174,7 +174,7 @@
       "id": "OI008",
       "Items": [
         {
-          "id": "P002",
+          "ProductId": "P002",
           "ProductName": "Widget B",
           "Quantity": 2,
           "UnitPrice": 45,
@@ -186,7 +186,7 @@
       "id": "OI009",
       "Items": [
         {
-          "id": "P003",
+          "ProductId": "P003",
           "ProductName": "Widget C",
           "Quantity": 3,
           "UnitPrice": 50,
@@ -198,7 +198,7 @@
       "id": "OI010",
       "Items": [
         {
-          "id": "P004",
+          "ProductId": "P004",
           "ProductName": "Widget D",
           "Quantity": 4,
           "UnitPrice": 50,
