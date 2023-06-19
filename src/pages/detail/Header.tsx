@@ -1,6 +1,7 @@
-import { Button } from "@mui/material"
+import { Button, Snackbar } from "@mui/material"
 import useItemStore from "./useItemsStore"
 import { useMutateItem } from "./useItemOrder"
+import { useState } from "react"
 
 export default function Header() {
   const { isItemsChanged, itemsId } = useItemStore((state) => ({
@@ -8,6 +9,7 @@ export default function Header() {
     itemsId: state.id,
   }))
   const itemsMutation = useMutateItem()
+  const [showAlert, setShowAlert] = useState(false)
   return (
     <div
       style={{
@@ -16,10 +18,21 @@ export default function Header() {
         justifyContent: "flex-end",
       }}
     >
+      <Snackbar
+        open={showAlert}
+        autoHideDuration={2000}
+        onClose={() => setShowAlert(false)}
+        message="Perubahan tersimpan"
+        anchorOrigin={{ horizontal: "right", vertical: "top" }}
+      />
       {isItemsChanged ? (
         <Button
           variant="contained"
-          onClick={() => itemsMutation.mutate(itemsId)}
+          onClick={() =>
+            itemsMutation.mutate(itemsId, {
+              onSuccess: () => setShowAlert(true),
+            })
+          }
         >
           Apply Changes
         </Button>

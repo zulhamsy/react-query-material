@@ -20,7 +20,9 @@ export default function useItemOrder(orderItemId?: string) {
 }
 
 export function useMutateItem() {
-  const updatedItems = useItemStore((state) => state.Items)
+  const { updatedItems } = useItemStore((state) => ({
+    updatedItems: state.Items,
+  }))
   const queryClient = useQueryClient()
   const itemMutation = useMutation(
     async (itemsId: string): Promise<OrderItems> => {
