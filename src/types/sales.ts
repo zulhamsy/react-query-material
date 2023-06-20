@@ -50,7 +50,7 @@ type CashPayment = {
   MethodType: "Cash"
 }
 
-type ProductItem = {
+export type ProductItem = {
   ProductId: string
   ProductName: string
   Quantity: number

@@ -17,7 +17,15 @@ import useItemOrder from "./useItemOrder.ts"
 import useItemStore from "./useItemsStore.ts"
 import { useEffect } from "react"
 
-export default function ListItems({ id }: { id?: string }) {
+export default function ListItems({
+  id,
+  handleClickAdd,
+  handleClickEdit,
+}: {
+  id?: string
+  handleClickAdd: () => void
+  handleClickEdit: (id: string) => void
+}) {
   // query
   const salesOrderQuery = useOrderDetails(id)
   const orderItemsQuery = useItemOrder(salesOrderQuery.data?.OrderItemsId)
@@ -91,7 +99,7 @@ export default function ListItems({ id }: { id?: string }) {
                 <TableCell align="right">${item.LineTotal}</TableCell>
                 <TableCell>
                   <Tooltip title="Edit">
-                    <IconButton>
+                    <IconButton onClick={() => handleClickEdit(item.ProductId)}>
                       <EditRounded fontSize="small" />
                     </IconButton>
                   </Tooltip>
@@ -111,6 +119,7 @@ export default function ListItems({ id }: { id?: string }) {
           variant="outlined"
           startIcon={<AddRounded />}
           sx={{ float: "right" }}
+          onClick={handleClickAdd}
         >
           Add Items
         </Button>
