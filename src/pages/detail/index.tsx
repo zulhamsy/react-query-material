@@ -12,12 +12,12 @@ export default function Detail() {
   const [dialogOpen, setDialogOpen] = useState(false)
   const [editedId, setEditedId] = useState("")
 
-  function handleEdit(id: string) {
+  function handleEditOnItem(id: string) {
     setDialogOpen(true)
     setEditedId(id)
   }
 
-  function handleAdd() {
+  function handleAddOnItems() {
     setDialogOpen(true)
     setEditedId("")
   }
@@ -46,8 +46,8 @@ export default function Detail() {
       >
         <ListItems
           id={id}
-          handleClickAdd={handleAdd}
-          handleClickEdit={handleEdit}
+          handleClickAdd={handleAddOnItems}
+          handleClickEdit={handleEditOnItem}
         />
         <ShipmentAddress id={id} />
         <OrderSummary id={id} />

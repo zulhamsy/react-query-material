@@ -33,10 +33,12 @@ export default function ListItems({
   const { data: salesData } = salesOrderQuery
   const { data: itemsData, isLoading: itemsLoading } = orderItemsQuery
   // store-related
-  const initializeStore = useItemStore((state) => state.init)
-  const resetStore = useItemStore((state) => state.reset)
+  const {
+    init: initializeStore,
+    reset: resetStore,
+    deleteItemById,
+  } = useItemStore((state) => state.action)
   const items = useItemStore((state) => state.Items)
-  const deleteItemById = useItemStore((state) => state.deleteItemById)
 
   useEffect(() => {
     if (itemsData) {

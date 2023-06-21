@@ -18,9 +18,11 @@ export default function ModalAddEdit({
   setDialogOpen: React.Dispatch<typeof dialogOpen>
   editedId: string
 }) {
-  const getEditedItem = useItemStore((state) => state.getItemById)
-  const addNewItem = useItemStore((state) => state.addNewItem)
-  const editItemById = useItemStore((state) => state.editItemById)
+  const {
+    getItemById: getEditedItem,
+    addNewItem,
+    editItemById,
+  } = useItemStore((state) => state.action)
   const [productName, setProductName] = useState("")
   const [quantity, setQuantity] = useState(1)
   const [price, setPrice] = useState(0)
@@ -42,7 +44,7 @@ export default function ModalAddEdit({
     e.preventDefault()
     if (editedId) {
       editItemById({
-        ProductId: getEditedItem(editedId).ProductId,
+        ProductId: editedId,
         Quantity: quantity,
         UnitPrice: price,
       })
