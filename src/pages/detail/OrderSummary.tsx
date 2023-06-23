@@ -1,6 +1,6 @@
 import { Paper, Typography } from "@mui/material"
-import useOrderDetails from "./useOrderDetails"
-import useItemOrder from "./useItemOrder"
+import useOrderDetails from "./useQuerySalesOrder"
+import useItemOrder from "./useQueryOrderItems"
 
 export default function OrderSummary({ id }: { id?: string }) {
   const salesOrderQuery = useOrderDetails(id)

@@ -7,7 +7,8 @@ import {
   InputAdornment,
   TextField,
 } from "@mui/material"
-import useItemStore from "./useItemsStore"
+import useItemStore from "./useStoreItems"
+import { shallow } from "zustand/shallow"
 
 export default function ModalAddEdit({
   dialogOpen,
@@ -22,7 +23,7 @@ export default function ModalAddEdit({
     getItemById: getEditedItem,
     addNewItem,
     editItemById,
-  } = useItemStore((state) => state.action)
+  } = useItemStore((state) => state.action, shallow)
   const [productName, setProductName] = useState("")
   const [quantity, setQuantity] = useState(1)
   const [price, setPrice] = useState(0)
@@ -38,7 +39,7 @@ export default function ModalAddEdit({
     setProductName("")
     setQuantity(1)
     setPrice(0)
-  }, [editedId])
+  }, [editedId, getEditedItem])
 
   function handleSubmitForm(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault()

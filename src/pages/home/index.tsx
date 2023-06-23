@@ -12,11 +12,11 @@ import {
   Skeleton,
 } from "@mui/material"
 import { useNavigate } from "react-router-dom"
-import useHeader from "./useHeader"
+import useQueryHeader from "./useQueryHeader"
 
 export default function Home() {
   const navigate = useNavigate()
-  const headerQuery = useHeader()
+  const headerQuery = useQueryHeader()
   return (
     <Paper
       square

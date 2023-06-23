@@ -1,8 +1,8 @@
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query"
 import { OrderItems } from "types/sales"
-import useItemStore from "./useItemsStore"
+import useItemStore from "./useStoreItems"
 
-export default function useItemOrder(orderItemId?: string) {
+export default function useQueryOrderItems(orderItemId?: string) {
   const query = useQuery(
     ["itemsOrder", orderItemId],
     async (): Promise<OrderItems> => {
@@ -20,12 +20,13 @@ export default function useItemOrder(orderItemId?: string) {
 }
 
 export function useMutateItem() {
-  const { updatedItems } = useItemStore((state) => ({
+  const { updatedItems, itemsId } = useItemStore((state) => ({
     updatedItems: state.Items,
+    itemsId: state.id,
   }))
   const queryClient = useQueryClient()
   const itemMutation = useMutation(
-    async (itemsId: string): Promise<OrderItems> => {
+    async (): Promise<OrderItems> => {
       const res = await fetch(`http://localhost:3000/items/${itemsId}`, {
         method: "PUT",
         headers: {

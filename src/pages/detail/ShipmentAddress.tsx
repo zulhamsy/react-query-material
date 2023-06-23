@@ -1,5 +1,5 @@
 import { Chip, Paper, Typography } from "@mui/material"
-import useOrderDetails from "./useOrderDetails"
+import useOrderDetails from "./useQuerySalesOrder"
 
 export default function ShipmentAddress({ id }: { id?: string }) {
   const salesOrderQuery = useOrderDetails(id)

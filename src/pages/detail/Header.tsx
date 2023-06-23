@@ -1,13 +1,10 @@
 import { Button, Snackbar } from "@mui/material"
-import useItemStore from "./useItemsStore"
-import { useMutateItem } from "./useItemOrder"
+import useItemStore from "./useStoreItems"
+import { useMutateItem } from "./useQueryOrderItems"
 import { useState } from "react"
 
 export default function Header() {
-  const { isItemsChanged, itemsId } = useItemStore((state) => ({
-    isItemsChanged: state.isChanged,
-    itemsId: state.id,
-  }))
+  const isItemsChanged = useItemStore((state) => state.isChanged)
   const itemsMutation = useMutateItem()
   const [showAlert, setShowAlert] = useState(false)
   return (
@@ -29,7 +26,7 @@ export default function Header() {
         <Button
           variant="contained"
           onClick={() =>
-            itemsMutation.mutate(itemsId, {
+            itemsMutation.mutate(undefined, {
               onSuccess: () => setShowAlert(true),
             })
           }

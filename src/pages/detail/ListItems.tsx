@@ -12,10 +12,11 @@ import {
   Tooltip,
 } from "@mui/material"
 import { AddRounded, EditRounded, Delete } from "@mui/icons-material"
-import useOrderDetails from "./useOrderDetails"
-import useItemOrder from "./useItemOrder.ts"
-import useItemStore from "./useItemsStore.ts"
+import useOrderDetails from "./useQuerySalesOrder.ts"
+import useQueryOrderItems from "./useQueryOrderItems.ts"
+import useStoreItem from "./useStoreItems.ts"
 import { useEffect } from "react"
+import { shallow } from "zustand/shallow"
 
 export default function ListItems({
   id,
@@ -28,7 +29,7 @@ export default function ListItems({
 }) {
   // query
   const salesOrderQuery = useOrderDetails(id)
-  const orderItemsQuery = useItemOrder(salesOrderQuery.data?.OrderItemsId)
+  const orderItemsQuery = useQueryOrderItems(salesOrderQuery.data?.OrderItemsId)
   // query data
   const { data: salesData } = salesOrderQuery
   const { data: itemsData, isLoading: itemsLoading } = orderItemsQuery
@@ -37,19 +38,19 @@ export default function ListItems({
     init: initializeStore,
     reset: resetStore,
     deleteItemById,
-  } = useItemStore((state) => state.action)
-  const items = useItemStore((state) => state.Items)
+  } = useStoreItem((state) => state.action, shallow)
+  const items = useStoreItem((state) => state.Items)
 
   useEffect(() => {
     if (itemsData) {
       initializeStore(itemsData)
     }
-  }, [itemsData])
+  }, [itemsData, initializeStore])
 
   // place cleanup fn in separate useEffect -> rule of thumb
   useEffect(() => {
     return resetStore
-  }, [])
+  }, [resetStore])
   return (
     <Paper elevation={0} sx={{ width: "fit-content", bgcolor: "inherit" }}>
       <Typography variant="body1" color="#64748b" fontWeight={600} mb={2}>

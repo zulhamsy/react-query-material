@@ -1,7 +1,7 @@
 import { useQuery } from "@tanstack/react-query"
 import { Header } from "types/sales"
 
-export default function useHeader() {
+export default function useQueryHeader() {
   const query = useQuery(
     ["header"],
     async (): Promise<Header[]> => {
