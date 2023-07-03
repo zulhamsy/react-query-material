@@ -8,11 +8,14 @@ export default function useQueryOrderItems(orderItemId?: string) {
     async (): Promise<OrderItems> => {
       const res = await fetch(`http://localhost:3000/items?id=${orderItemId}`)
       const data = await res.json()
-      return data[0]
+      if (data.length) return data[0]
+      throw new Error('Items not found')
     },
     {
       staleTime: Infinity,
       enabled: Boolean(orderItemId),
+      useErrorBoundary: true,
+      retry: 1
     },
   )
 

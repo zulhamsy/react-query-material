@@ -5,19 +5,15 @@ export default function useQuerySalesOrder(orderId?: string) {
   const query = useQuery(
     ["orderDetails", orderId],
     async (): Promise<SalesOrder> => {
-      try {
-        const res = await fetch(`http://localhost:3000/order?id=${orderId}`)
-        const data: SalesOrder[] = await res.json()
-        if (data.length) return data[0]
-        throw new Error("Data not found")
-      } catch (err) {
-        throw new Error("Data not found")
-      }
+      const res = await fetch(`http://localhost:3000/order?id=${orderId}`)
+      const data: SalesOrder[] = await res.json()
+      if (data.length) return data[0]
+      throw new Error("Data not found")
     },
     {
       staleTime: Infinity,
       enabled: Boolean(orderId),
-      retry: 3,
+      retry: 1,
     },
   )
 

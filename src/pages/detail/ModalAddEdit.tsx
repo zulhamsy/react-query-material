@@ -36,10 +36,14 @@ export default function ModalAddEdit({
       setPrice(editedItem.UnitPrice)
       return
     }
+    resetLocalState()
+  }, [editedId, getEditedItem])
+
+  function resetLocalState() {
     setProductName("")
     setQuantity(1)
     setPrice(0)
-  }, [editedId, getEditedItem])
+  }
 
   function handleSubmitForm(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault()
@@ -55,6 +59,7 @@ export default function ModalAddEdit({
         Quantity: quantity,
         UnitPrice: price,
       })
+      resetLocalState()
     }
     setDialogOpen(false)
   }
