@@ -6,7 +6,11 @@ export default function useQueryOrderItems(orderItemId?: string) {
   const query = useQuery(
     ["itemsOrder", orderItemId],
     async (): Promise<OrderItems> => {
-      const res = await fetch(`http://localhost:3000/items?id=${orderItemId}`)
+      const res = await fetch(`http://localhost:3000/items?id=${orderItemId}`, {
+        headers: {
+          'x-error': 'true'
+        }
+      })
       const data = await res.json()
       if (res.status !== 200) throw new Error(data.error)
       return data[0]

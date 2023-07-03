@@ -4,6 +4,23 @@ const server = jsonServer.create()
 const routes = jsonServer.router('src/data/compile.json')
 const middlewares = jsonServer.defaults()
 
+// random error middleware
+server.use((req, res, next) => {
+	// Check if 'X-Error' header is true
+	const isError = req.headers['x-error'] === 'true';
+
+	// Randomly decide whether to respond with an error or proceed
+	const shouldError = Math.random() < 0.5; // 90% chance of error
+
+	if (isError && shouldError) {
+		return res.status(500).setHeader('Access-Control-Allow-Origin', 'http://localhost:5173').json({
+			error: 'Random error occurred',
+		});
+	}
+
+	next()
+})
+
 // custom middleware
 server.use((req, res, next) => {
 	const data = routes.db.getState()
