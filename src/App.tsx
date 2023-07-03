@@ -11,7 +11,7 @@ const routes = createBrowserRouter([
   },
   {
     path: "/detail/:id",
-    element: <ErrorBoundary fallbackRender={FallbackError}><Detail /></ErrorBoundary>,
+    element: <ErrorBoundary FallbackComponent={FallbackError}><Detail /></ErrorBoundary>,
   },
   {
     path: "*",
