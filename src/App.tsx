@@ -1,8 +1,6 @@
 import { RouterProvider, createBrowserRouter } from "react-router-dom"
 import Home from "page/home"
 import Detail from "page/detail"
-import { ErrorBoundary } from "react-error-boundary"
-import FallbackError from "page/fallback"
 
 const routes = createBrowserRouter([
   {
@@ -11,7 +9,7 @@ const routes = createBrowserRouter([
   },
   {
     path: "/detail/:id",
-    element: <ErrorBoundary FallbackComponent={FallbackError}><Detail /></ErrorBoundary>,
+    element: <Detail />,
   },
   {
     path: "*",

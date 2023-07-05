@@ -12,14 +12,15 @@ export default function useQueryOrderItems(orderItemId?: string) {
         }
       })
       const data = await res.json()
-      if (res.status !== 200) throw new Error(data.error)
+      if (res.status >= 500) throw new Error(data.error + '. Server failed to return Items Data')
+      if (res.status === 404) throw new Error(data.error + `. Item lists with ID ${orderItemId} not found`)
       return data[0]
     },
     {
       staleTime: Infinity,
       enabled: Boolean(orderItemId),
       useErrorBoundary: true,
-      retry: 1
+      retry: 3
     },
   )
 
