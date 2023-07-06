@@ -1,4 +1,4 @@
-import { useState } from "react"
+import { useState } from 'react'
 import { useParams } from "react-router-dom"
 import { Paper } from "@mui/material"
 import ListItems from "./ListItems"
@@ -6,15 +6,13 @@ import ShipmentAddress from "./ShipmentAddress"
 import OrderSummary from "./OrderSummary"
 import Header from "./Header"
 import ModalAddEdit from "./ModalAddEdit"
-import { ErrorBoundary } from "react-error-boundary"
-import FallbackError from "page/fallback"
 import AlertReconnect from "./AlertReconnect"
+import ErrorQuery from 'components/ErrorQuery'
 
 export default function Detail() {
   const { id } = useParams()
   const [dialogOpen, setDialogOpen] = useState(false)
   const [editedId, setEditedId] = useState("")
-  const [errorKeys, setErrorKeys] = useState("error")
 
   function handleEditOnItem(id: string) {
     setDialogOpen(true)
@@ -27,7 +25,7 @@ export default function Detail() {
   }
 
   return (
-    <ErrorBoundary FallbackComponent={FallbackError} resetKeys={[errorKeys]} onReset={() => setErrorKeys("")}>
+    <ErrorQuery>
       <Paper
         elevation={0}
         sx={{
@@ -64,6 +62,6 @@ export default function Detail() {
           editedId={editedId}
         />
       </Paper>
-    </ErrorBoundary>
+    </ErrorQuery>
   )
 }

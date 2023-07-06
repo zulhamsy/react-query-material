@@ -45,8 +45,11 @@ export function useMutateItem() {
       return res.json()
     },
     {
-      onSuccess: (data) =>
-        queryClient.invalidateQueries(["itemsOrder", data.id]),
+      onSettled: (data) => {
+        if (data?.id) {
+          queryClient.invalidateQueries(["itemsOrder", data.id])
+        }
+      }
     },
   )
 

@@ -9,7 +9,7 @@ export default function AlertReconnect({ id }: { id?: string }) {
 		<>
 			{
 				orderFailureCount || itemFailureCount ? (
-					<Alert severity="info">
+					<Alert severity="info" sx={{ mb: 2 }}>
 						<AlertTitle>Reconnecting...</AlertTitle>
 						Trying to get {orderFailureCount ? "Order's" : "Item's"} Data ({orderFailureCount || itemFailureCount}x)
 					</Alert>

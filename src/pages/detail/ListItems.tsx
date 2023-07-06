@@ -32,7 +32,7 @@ export default function ListItems({
   const orderItemsQuery = useQueryOrderItems(salesOrderQuery.data?.OrderItemsId)
   // query data
   const { data: salesData } = salesOrderQuery
-  const { data: itemsData, isLoading: itemsLoading } = orderItemsQuery
+  const { data: itemsData, isLoading: itemsLoading, isRefetching } = orderItemsQuery
   // store-related
   const {
     init: initializeStore,
@@ -59,6 +59,11 @@ export default function ListItems({
           {salesData ? "#" + salesData.id : "..."}
         </Typography>
       </Typography>
+      {
+        isRefetching ? (
+          <Typography variant="overline" color="primary">Updating lists...</Typography>
+        ) : null
+      }
       <TableContainer component={Paper} elevation={2} sx={{ mb: 2 }}>
         <Table>
           <TableHead>
@@ -102,12 +107,12 @@ export default function ListItems({
                 <TableCell align="right">${item.LineTotal}</TableCell>
                 <TableCell>
                   <Tooltip title="Edit">
-                    <IconButton onClick={() => handleClickEdit(item.ProductId)}>
+                    <IconButton onClick={() => handleClickEdit(item.ProductId)} disabled={isRefetching}>
                       <EditRounded fontSize="small" />
                     </IconButton>
                   </Tooltip>
                   <Tooltip title="Delete">
-                    <IconButton onClick={() => deleteItemById(item.ProductId)}>
+                    <IconButton onClick={() => deleteItemById(item.ProductId)} disabled={isRefetching}>
                       <Delete fontSize="small" />
                     </IconButton>
                   </Tooltip>
@@ -123,6 +128,7 @@ export default function ListItems({
           startIcon={<AddRounded />}
           sx={{ float: "right" }}
           onClick={handleClickAdd}
+          disabled={isRefetching}
         >
           Add Items
         </Button>

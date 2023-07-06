@@ -6,7 +6,7 @@ const routes = jsonServer.router('src/data/compile.json')
 
 module.exports = (req, res, next) => {
 	const data = routes.db.getState()
-	const resource = req.path.substring(1)
+	const resource = req.path.split('/')[1]
 	const queryId = req.query.id
 
 	if (!(resource in data)) {
