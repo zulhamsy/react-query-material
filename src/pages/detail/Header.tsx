@@ -2,11 +2,12 @@ import { Button, Snackbar } from "@mui/material"
 import useItemStore from "./useStoreItems"
 import { useMutateItem } from "./useQueryOrderItems"
 import { useState } from "react"
-import { useIsFetching } from "@tanstack/react-query"
+import { useIsFetching, useIsMutating } from "@tanstack/react-query"
 
 export default function Header() {
   const isItemsChanged = useItemStore((state) => state.isChanged)
   const isFetchingItems = useIsFetching(['itemsOrder'])
+  const isMutatingItems = useIsMutating(['mutateItem'])
   const itemsMutation = useMutateItem()
   const [showAlert, setShowAlert] = useState(false)
   return (
@@ -27,14 +28,14 @@ export default function Header() {
       {isItemsChanged ? (
         <Button
           variant="contained"
-          disabled={Boolean(isFetchingItems)}
+          disabled={Boolean(isFetchingItems) || Boolean(isMutatingItems)}
           onClick={() =>
             itemsMutation.mutate(undefined, {
               onSuccess: () => setShowAlert(true),
             })
           }
         >
-          Apply Changes
+          {isMutatingItems ? 'Loading' : "Apply Changes"}
         </Button>
       ) : null}
     </div>

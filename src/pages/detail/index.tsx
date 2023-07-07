@@ -1,29 +1,17 @@
-import { useState } from 'react'
+// import { useState } from 'react'
 import { useParams } from "react-router-dom"
 import { Paper } from "@mui/material"
 import ListItems from "./ListItems"
 import ShipmentAddress from "./ShipmentAddress"
 import OrderSummary from "./OrderSummary"
 import Header from "./Header"
-import ModalAddEdit from "./ModalAddEdit"
+// import ModalAddEdit from "./ModalAddEdit"
 import AlertReconnect from "./AlertReconnect"
 import ErrorQuery from 'components/ErrorQuery'
 
 export default function Detail() {
+  console.info('Index Render')
   const { id } = useParams()
-  const [dialogOpen, setDialogOpen] = useState(false)
-  const [editedId, setEditedId] = useState("")
-
-  function handleEditOnItem(id: string) {
-    setDialogOpen(true)
-    setEditedId(id)
-  }
-
-  function handleAddOnItems() {
-    setDialogOpen(true)
-    setEditedId("")
-  }
-
   return (
     <ErrorQuery>
       <Paper
@@ -48,19 +36,11 @@ export default function Detail() {
             gap: 4,
           }}
         >
-          <ListItems
-            id={id}
-            handleClickAdd={handleAddOnItems}
-            handleClickEdit={handleEditOnItem}
-          />
+          <ListItems id={id} />
           <ShipmentAddress id={id} />
           <OrderSummary id={id} />
         </Paper>
-        <ModalAddEdit
-          dialogOpen={dialogOpen}
-          setDialogOpen={setDialogOpen}
-          editedId={editedId}
-        />
+
       </Paper>
     </ErrorQuery>
   )

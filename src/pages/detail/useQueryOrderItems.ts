@@ -34,6 +34,7 @@ export function useMutateItem() {
   }))
   const queryClient = useQueryClient()
   const itemMutation = useMutation(
+    ['mutateItem'],
     async (): Promise<OrderItems> => {
       const res = await fetch(`http://localhost:3000/items/${itemsId}`, {
         method: "PUT",

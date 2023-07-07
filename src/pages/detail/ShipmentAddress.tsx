@@ -2,6 +2,7 @@ import { Chip, Paper, Typography } from "@mui/material"
 import useOrderDetails from "./useQuerySalesOrder"
 
 export default function ShipmentAddress({ id }: { id?: string }) {
+  console.info('Shipment Render')
   const salesOrderQuery = useOrderDetails(id)
   return (
     <Paper elevation={0} sx={{ backgroundColor: "inherit", gridColumn: 1 }}>
