@@ -3,6 +3,7 @@ import useOrderDetails from "./useQuerySalesOrder"
 import useItemOrder from "./useQueryOrderItems"
 
 export default function OrderSummary({ id }: { id?: string }) {
+  console.info('Summary Render')
   const salesOrderQuery = useOrderDetails(id)
   const orderItemsQuery = useItemOrder(salesOrderQuery.data?.OrderItemsId)
   const { data: itemsData, isLoading: itemsLoading } = orderItemsQuery

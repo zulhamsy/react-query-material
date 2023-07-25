@@ -90,10 +90,10 @@
         },
         {
           "ProductId": "1688651822453",
+          "Quantity": 3,
+          "UnitPrice": 50,
           "LineTotal": 150,
-          "ProductName": "Widget C",
-          "Quantity": 2,
-          "UnitPrice": 75
+          "ProductName": "Widget C"
         }
       ],
       "id": "OI001"
@@ -123,7 +123,6 @@
       "id": "OI003"
     },
     {
-      "id": "OI004",
       "Items": [
         {
           "ProductId": "P006",
@@ -131,8 +130,16 @@
           "Quantity": 3,
           "UnitPrice": 25,
           "LineTotal": 75
+        },
+        {
+          "ProductId": "1688718356187",
+          "LineTotal": 44,
+          "ProductName": "Test Product",
+          "Quantity": 2,
+          "UnitPrice": 22
         }
-      ]
+      ],
+      "id": "OI004"
     },
     {
       "id": "OI005",
@@ -195,7 +202,6 @@
       ]
     },
     {
-      "id": "OI010",
       "Items": [
         {
           "ProductId": "P004",
@@ -203,8 +209,16 @@
           "Quantity": 4,
           "UnitPrice": 50,
           "LineTotal": 200
+        },
+        {
+          "ProductId": "1688718020826",
+          "LineTotal": 20,
+          "ProductName": "Widget E",
+          "Quantity": 2,
+          "UnitPrice": 10
         }
-      ]
+      ],
+      "id": "OI010"
     }
   ],
   "order": [

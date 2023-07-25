@@ -15,18 +15,16 @@ import { AddRounded, EditRounded, Delete } from "@mui/icons-material"
 import useOrderDetails from "./useQuerySalesOrder.ts"
 import useQueryOrderItems from "./useQueryOrderItems.ts"
 import useStoreItem from "./useStoreItems.ts"
-import { useEffect } from "react"
+import { useEffect, useState } from "react"
 import { shallow } from "zustand/shallow"
+import ModalAddEdit from "./ModalAddEdit.tsx"
 
 export default function ListItems({
   id,
-  handleClickAdd,
-  handleClickEdit,
 }: {
   id?: string
-  handleClickAdd: () => void
-  handleClickEdit: (id: string) => void
 }) {
+  console.info('Lists Render')
   // query
   const salesOrderQuery = useOrderDetails(id)
   const orderItemsQuery = useQueryOrderItems(salesOrderQuery.data?.OrderItemsId)
@@ -40,6 +38,18 @@ export default function ListItems({
     deleteItemById,
   } = useStoreItem((state) => state.action, shallow)
   const items = useStoreItem((state) => state.Items)
+  const [dialogOpen, setDialogOpen] = useState(false)
+  const [editedId, setEditedId] = useState("")
+
+  function handleEditOnItem(id: string) {
+    setDialogOpen(true)
+    setEditedId(id)
+  }
+
+  function handleAddOnItems() {
+    setDialogOpen(true)
+    setEditedId("")
+  }
 
   useEffect(() => {
     if (itemsData) {
@@ -107,7 +117,7 @@ export default function ListItems({
                 <TableCell align="right">${item.LineTotal}</TableCell>
                 <TableCell>
                   <Tooltip title="Edit">
-                    <IconButton onClick={() => handleClickEdit(item.ProductId)} disabled={isRefetching}>
+                    <IconButton onClick={() => handleEditOnItem(item.ProductId)} disabled={isRefetching}>
                       <EditRounded fontSize="small" />
                     </IconButton>
                   </Tooltip>
@@ -127,12 +137,17 @@ export default function ListItems({
           variant="outlined"
           startIcon={<AddRounded />}
           sx={{ float: "right" }}
-          onClick={handleClickAdd}
+          onClick={handleAddOnItems}
           disabled={isRefetching}
         >
           Add Items
         </Button>
       )}
+      <ModalAddEdit
+        dialogOpen={dialogOpen}
+        setDialogOpen={setDialogOpen}
+        editedId={editedId}
+      />
     </Paper>
   )
 }
