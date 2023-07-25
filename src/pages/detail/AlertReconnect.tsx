@@ -3,18 +3,18 @@ import useQueryOrderItems from "./useQueryOrderItems"
 import useQuerySalesOrder from "./useQuerySalesOrder"
 
 export default function AlertReconnect({ id }: { id?: string }) {
-	const { failureCount: orderFailureCount, data } = useQuerySalesOrder(id)
-	const { failureCount: itemFailureCount } = useQueryOrderItems(data?.OrderItemsId)
-	return (
-		<>
-			{
-				orderFailureCount || itemFailureCount ? (
-					<Alert severity="info" sx={{ mb: 2 }}>
-						<AlertTitle>Reconnecting...</AlertTitle>
-						Trying to get {orderFailureCount ? "Order's" : "Item's"} Data ({orderFailureCount || itemFailureCount}x)
-					</Alert>
-				) : null
-			}
-		</>
-	)
+  const { failureCount: orderFailureCount, data } = useQuerySalesOrder(id)
+  const { failureCount: itemFailureCount } = useQueryOrderItems(data?.OrderItemsId)
+  return (
+    <>
+      {
+        orderFailureCount || itemFailureCount ? (
+          <Alert severity="info" sx={{ mb: 2 }}>
+            <AlertTitle>Reconnecting...</AlertTitle>
+            Trying to get {orderFailureCount ? "Order's" : "Item's"} Data ({orderFailureCount || itemFailureCount}x)
+          </Alert>
+        ) : null
+      }
+    </>
+  )
 }
